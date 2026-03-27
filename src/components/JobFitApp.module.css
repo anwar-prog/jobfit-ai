@@ -622,3 +622,70 @@
   color: #fff !important;
   box-shadow: 0 1px 6px rgba(124, 106, 247, 0.4);
 }
+
+/* ── Mode selector ── */
+.modeSection {
+  margin-top: 28px;
+}
+
+.modeLabel {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.modeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.modeCard {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  user-select: none;
+}
+
+.modeCard:hover {
+  border-color: var(--muted);
+  transform: translateY(-1px);
+}
+
+.modeCardActive {
+  border-color: var(--accent) !important;
+  background: rgba(200, 240, 74, 0.06) !important;
+}
+
+.modeIcon {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.modeName {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modeSub {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .modeGrid {
+    grid-template-columns: 1fr;
+  }
+}

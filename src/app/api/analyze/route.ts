@@ -21,6 +21,31 @@ Format your response with these sections:
 Keep everything tight. No padding.`
   },
 
+  step1combined: {
+    system: `You are a senior recruiter AND brutally honest hiring manager combined. First concisely break down the job, then give a direct fit assessment. Note: CV may be PDF-extracted text — interpret intelligently.`,
+    buildUser: (jd: string, cv: string) => `Do TWO things in sequence for this job description and CV:
+
+**PART 1 — JD BREAKDOWN**
+**Role in One Line:** (what is this job, really)
+**Key Requirements:** (bullet list, max 6 — only genuinely important ones)
+**What They Actually Want:** (1-2 sentences reading between the lines)
+**Red Flags / Watch-outs:** (anything unusual or demanding)
+
+**PART 2 — FIT REVIEW**
+**Overall Verdict:** [Strong Fit / Partial Fit / Weak Fit] — one sentence why.
+**What matches:** (3-4 bullet points, specific)
+**What's missing or weak:** (3-4 bullet points, no softening)
+**One thing to fix immediately:** (1 sentence)
+
+Keep everything tight and direct. No padding.
+
+**Job Description:**
+${jd}
+
+**CV:**
+${cv}`
+  },
+
   step2: {
     system: `You are a brutally honest hiring manager. You give short, direct assessments. No sugarcoating. No corporate speak. Note: the CV text may have been extracted from a PDF and could appear as continuous text — interpret the content intelligently regardless of formatting.`,
     buildUser: (jd, cv) => `Compare this CV against the job description and give a brutal, honest fit assessment.
