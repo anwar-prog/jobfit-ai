@@ -1,15 +1,15 @@
 # JobFit AI
 
-A Next.js application that analyzes job descriptions, reviews CV fit, rewrites your CV, and generates a German-style cover letter — powered by the Anthropic Claude API.
+A Next.js application that analyzes job descriptions, reviews CV fit, rewrites your CV, and generates a German-style cover letter - powered by the Anthropic Claude API.
 
 ---
 
 ## What it does
 
-1. **Job Description Breakdown** — Concise summary of requirements, nice-to-haves, and what the company really wants
-2. **Brutal Fit Review** — Honest assessment of how your CV matches the role
-3. **CV Rewrite** — Optimized CV aligned to the job description (same structure, improved language)
-4. **German-Style Cover Letter** — Professional 180–200 word cover letter in English following German Bewerbung conventions
+1. **Job Description Breakdown** - Concise summary of requirements, nice-to-haves, and what the company really wants
+2. **Brutal Fit Review** - Honest assessment of how your CV matches the role
+3. **CV Rewrite** - Optimized CV aligned to the job description (same structure, improved language)
+4. **German-Style Cover Letter** - Professional 180–200 word cover letter in English following German Bewerbung conventions
 
 ---
 
