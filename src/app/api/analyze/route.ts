@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
+import { getServerSession } from 'next-auth'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
@@ -116,6 +117,12 @@ Output only the cover letter. No meta-commentary.`
 }
 
 export async function POST(req: NextRequest) {
+  // Auth guard — reject unauthenticated requests
+  const session = await getServerSession()
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+  }
+
   try {
     const { step, jdText, cvText, rewrittenCv, lang } = await req.json()
 
@@ -132,7 +139,7 @@ export async function POST(req: NextRequest) {
     const userPrompt = promptConfig.buildUser(jdText, cvText, rewrittenCv)
 
     const message = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 2000,
       system: promptConfig.system + langInstruction,
       messages: [{ role: 'user', content: userPrompt }]

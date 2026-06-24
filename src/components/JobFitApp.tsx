@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { useSession, signOut } from 'next-auth/react'
 import styles from './JobFitApp.module.css'
 
 type Step = 0 | 1 | 2 | 3
@@ -47,6 +48,7 @@ const T = {
     footer: 'All rights reserved · Zahir Hussain',
     errJD: 'Please provide a job description.',
     errCV: 'Please provide your CV.',
+    signOutLabel: 'Sign out',
     modeLabel: 'What do you need?',
     modeAll: 'Complete Application',
     modeAllSub: 'Analysis + CV Rewrite + Cover Letter',
@@ -96,6 +98,7 @@ const T = {
     footer: 'Alle Rechte vorbehalten · Zahir Hussain',
     errJD: 'Bitte geben Sie eine Stellenbeschreibung an.',
     errCV: 'Bitte geben Sie Ihren Lebenslauf an.',
+    signOutLabel: 'Abmelden',
     addCoverLetter: '+ Auch ein Anschreiben →',
     addCvAndCover: '+ Auch Lebenslauf + Anschreiben →',
     modeLabel: 'Was benötigen Sie?',
@@ -125,6 +128,7 @@ export default function JobFitApp() {
   const [cvDrag, setCvDrag] = useState(false)
   const [lang, setLang] = useState<'EN' | 'DE'>('EN')
   const t = T[lang]
+  const { data: session } = useSession()
 
   const switchLang = async (newLang: 'EN' | 'DE') => {
     if (newLang === lang) return
@@ -338,6 +342,16 @@ export default function JobFitApp() {
               <button className={`${styles.langBtn} ${lang==='DE'?styles.langActive:''}`} onClick={() => switchLang('DE')}>DE</button>
               <button className={`${styles.langBtn} ${lang==='EN'?styles.langActive:''}`} onClick={() => switchLang('EN')}>EN</button>
             </div>
+            {session?.user && (
+              <div className={styles.userMenu}>
+                {session.user.image && (
+                  <img src={session.user.image} alt={session.user.name || ''} className={styles.avatar} referrerPolicy="no-referrer" />
+                )}
+                <button className={styles.signOutBtn} onClick={() => signOut({ callbackUrl: '/login' })}>
+                  {t.signOutLabel}
+                </button>
+              </div>
+            )}
           </div>
         </header>
 
